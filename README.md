@@ -1,1 +1,1 @@
-# Course_enterer
+Автоматический вход на образовательный портал elearning.kazgasa.kz/ , Приложение написано на Flask
