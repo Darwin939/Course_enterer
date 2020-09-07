@@ -24,8 +24,19 @@ def login():
             db.session.commit()
             login_user(new_user)
             return redirect("/")
-
     return render_template('login.html')
 
 
-
+@app.route('/change_password/',methods=['POST','GET'])
+def change_pwd():
+    if request.method == 'POST':
+        username = request.form.get('username')  # запрос к данным формы
+        password = request.form.get('password')
+        user = db.session.query(User).filter(User.username == username).first()
+        try:
+            user.password = password
+            db.session.commit()
+            return render_template('succes.html')
+        except Exception as e:
+            return Response("Такого пользователя нет")
+    return render_template('change_password.html')
